@@ -5,7 +5,7 @@ It focuses on **relational database design**, **ERD modeling**, **writing struct
 
 ## Objectives
 
-**Part 1:** Designed an ERD with **One-to-One**, **One-to-Many**, and **Many-to-One** relationships using LucidCharts.  
+**Part 1:** Designed an ERD with **One-to-One**, **One-to-Many**, and **Many-to-One** relationships using DrawSQL.  
 **Part 2:** Wrote structured SQL queries to retrieve data using **INNER JOIN**, **NOT EXISTS**, **WHERE**, **GROUP BY**, and **HAVING**.  
 **Part 3:** Answered **4 interview questions** in a professional manner.
 
@@ -32,5 +32,5 @@ This section explains all the SQL queries used in the **Vehicle Rental System** 
 ## Technologies Used
 - **PostgreSQL** – Database management system
 - **Beekeeper Studio** – SQL client and database manager
-- **LucidChart** – ERD design and visualization
-- **Google Drive** – Documentation and collaboration
+- **DrawSQL** – ERD design and visualization
+- **Google Drive** – Interview videos
