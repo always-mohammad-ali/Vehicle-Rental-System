@@ -1,3 +1,4 @@
+--USERS TABLE PART START
 create type role as enum ('Admin', 'Customer');
 
 create table users(
@@ -9,7 +10,6 @@ create table users(
   phone_number varchar(50) not null
 )
 
-  alter table users alter column password drop not null;
   
 insert into users(name, email, phone_number, user_role)
 values ('Alice', 'alice@gmail.com', '1234567890', 'Customer'),
@@ -17,16 +17,14 @@ values ('Alice', 'alice@gmail.com', '1234567890', 'Customer'),
        ('Charlie', 'charlie@example.com', '1122334455', 'Customer');
 
 select * from users;
+--USERS TABLE PART END
 
 
-
-
-
-
-
+--VEHICLES TABLE PART START
 
 create type vehicle_type as enum ('Car', 'Bike', 'Truck')
 create type status as enum ('Available','Rented','Maintenance')
+
 create table vehicles(
   vehicle_id serial primary key,
   vehicle_name varchar(50) not null,
@@ -43,20 +41,18 @@ values ('Toyota Corolla', 'Car', '2022', 'ABC-123', 50, 'Available'),
        ('Yamaha R15', 'Bike', '2023', 'GHI-789', 30, 'Available'),
        ('Ford F-150', 'Truck', '2020', 'JKL-012', 100, 'Maintenance');
 
-select * from vehicles;
+--select * from vehicles;
 
+
+--Query 3: Retrieve available vehicles of a specific type 'Car' using WHERE
 select * from vehicles where type = 'Car' and ava_status = 'Available';
 
 
+--VEHICLES TABLE PART END
 
 
 
-
-
-
-
-
-
+-- BOOKINGS TABLE PART START
 
 create type booking_status as enum ('Pending','Confirmed','Completed','Cancelled')
 
@@ -78,22 +74,24 @@ values (2, 2, '2023-10-01', '2023-10-05', 'Completed', 240 ),
 
 select * from bookings;
 
+-- Query 1: Retrieve booking info with customer and vehicle names using JOIN
 select b.booking_id, u.name as customer_name, v.vehicle_name, b.start_date, b.end_date, b.booking_status as status from bookings b 
 join users u on b.user_id = u.user_id
 join vehicles v on b.vehicle_id = v.vehicle_id;
 
-
+-- Query 2: Find vehicles that have never been booked using NOT EXISTS
 select v.vehicle_id, v.vehicle_name as name, v.type, v.model, v.reg_num, v.rental_price, v.ava_status as status from vehicles v 
 left join bookings b on v.vehicle_id = b.vehicle_id
 where b.booking_id is null order by v.vehicle_id;
 
 
+-- Query 4: Count bookings per vehicle using GROUP BY & HAVING
 select v.vehicle_name, count(b.vehicle_id) as total_bookings from vehicles v
 left join bookings b on v.vehicle_id = b.vehicle_id
 group by v.vehicle_id having count(b.vehicle_id) > 2;
 
 
-
+--BOOKINGS TABLE PART END
 
 
 
